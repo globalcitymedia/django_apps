@@ -19,8 +19,15 @@ from django.urls import path
 from django.conf.urls import url
 from django.contrib import admin
 from todoapp.views import index
+from django.conf import settings # new
+from django.urls import path, include # new
+from django.conf.urls.static import static # new
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name="TodoList"),
 ]
+
+# to view the img in development env
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
