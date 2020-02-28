@@ -15,17 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
 from django.conf.urls import url
-from django.contrib import admin
 from todoapp.views import index
 from django.conf import settings # new
 from django.urls import path, include # new
 from django.conf.urls.static import static # new
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    # url(r'^admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     url(r'^$', index, name="TodoList"),
+    path('library', include('libraryapp.urls')),
 ]
 
 # to view the img in development env
